@@ -187,13 +187,13 @@ def display_flight_details(flights):
     """, unsafe_allow_html=True)
     st.markdown("### Flight Details")
     # Create a table-like display using columns
-    header_columns = st.columns([4, 4, 4, 4, 4, 4, 4,4])
+    header_columns = st.columns([4, 4, 6, 6, 4, 4, 4,4])
     headers = ["Airline", "Flight Number","Date","Route", "Duration (min)", "Price (USD)","Est. Delay (min)","Book Link"]
     for header, col in zip(headers, header_columns):
         col.write(header)
 
     for index, flight in flights.iterrows():
-        cols = st.columns([4, 4, 4, 4, 4, 4, 4,4])
+        cols = st.columns([4, 4, 6, 6, 4, 4, 4,4])
         cols[0].image(flight['LOGO_URL'], width=50)
         # cols[1].write(flight['AIRLINE'])
         cols[1].write(f"{flight['AIRLINE_CODE']}-{flight['FL_NUMBER']}")
