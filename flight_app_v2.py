@@ -188,7 +188,7 @@ def display_flight_details(flights):
     st.markdown("### Flight Details")
     # Create a table-like display using columns
     header_columns = st.columns([4, 4, 6, 6, 4, 4, 4,4])
-    headers = ["Airline", "Flight Number","Date","Route", "Duration (min)", "Price (USD)","Est. Delay (min)","Book Link"]
+    headers = ["Airline", "Flight Number","Date","Route", "Duration", "Price (USD)","Est. Delay (min)","Book Link"]
     for header, col in zip(headers, header_columns):
         col.write(header)
 
