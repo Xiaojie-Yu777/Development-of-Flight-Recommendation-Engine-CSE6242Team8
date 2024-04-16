@@ -208,40 +208,68 @@ def display_flight_details(flights):
 
 # Create the Streamlit app interface
 def main():
-    st.title("Flight Search")
+    # st.title("Flight Search")
 
-    # Input for source airport code
-    source_airport_code = st.text_input("Source Airport Code", "")
+    # # Input for source airport code
+    # source_airport_code = st.text_input("Source Airport Code", "")
 
-    # Input for destination airport code
-    destination_airport_code = st.text_input("Destination Airport Code", "")
+    # # Input for destination airport code
+    # destination_airport_code = st.text_input("Destination Airport Code", "")
 
-    # Input for outbound date
-    out_date = st.date_input("Outbound Date", min_value=datetime.today())
+    # # Input for outbound date
+    # out_date = st.date_input("Outbound Date", min_value=datetime.today())
 
-    # Select box for class of service
-    class_of_service = st.selectbox(
-        "Class of Service",
-        ("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"),
-        format_func=lambda x: x.replace("_", " ").title()  # Format the display text
-    )
+    # # Select box for class of service
+    # class_of_service = st.selectbox(
+    #     "Class of Service",
+    #     ("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"),
+    #     format_func=lambda x: x.replace("_", " ").title()  # Format the display text
+    # )
 
-    # Select box for sort order
-    sort_order = st.selectbox(
-        "Sort Order",
-        ("PRICE", "DEPARTURE_TIME", "ARRIVAL_TIME", "DURATION"),
-        format_func=lambda x: x.replace("_", " ").title()  # Format the display text
-    )
+    # # Select box for sort order
+    # sort_order = st.selectbox(
+    #     "Sort Order",
+    #     ("PRICE", "DEPARTURE_TIME", "ARRIVAL_TIME", "DURATION"),
+    #     format_func=lambda x: x.replace("_", " ").title()  # Format the display text
+    # )
 
-    # Select box for itinerary type
-    itinerary_type = st.selectbox(
-        "Itinerary Type",
-        ("ONE_WAY", "ROUND_TRIP")
-    )
+    # # Select box for itinerary type
+    # itinerary_type = st.selectbox(
+    #     "Itinerary Type",
+    #     ("ONE_WAY", "ROUND_TRIP")
+    # )
+    # # Place input widgets in the sidebar
+    with st.sidebar:
+        st.header("Search Flights")
+        source_airport_code = st.text_input("Source Airport Code", "")
+        destination_airport_code = st.text_input("Destination Airport Code", "")
+        out_date = st.date_input("Outbound Date", min_value=datetime.today())
+        class_of_service = st.selectbox(
+            "Class of Service",
+            ("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"),
+            format_func=lambda x: x.replace("_", " ").title()  # Format the display text
+        )
+        sort_order = st.selectbox(
+            "Sort Order",
+            ("PRICE", "DEPARTURE_TIME", "ARRIVAL_TIME", "DURATION"),
+            format_func=lambda x: x.replace("_", " ").title()  # Format the display text
+        )
+        itinerary_type = st.selectbox(
+            "Itinerary Type",
+            ("ONE_WAY", "ROUND_TRIP")
+        )
+        # Button to perform search
+        search_button = st.button("Search Flights")
 
     # Button to perform search
-    if st.button("Search Flights"):
+    if search_button:
         st.write("Searching for flights...")
+        # st.write(f"Source Airport Code: {source_airport_code}")
+        # st.write(f"Destination Airport Code: {destination_airport_code}")
+        # st.write(f"Outbound Date: {out_date}")
+        # st.write(f"Class of Service: {class_of_service}")
+        # st.write(f"Sort Order: {sort_order}")
+        # st.write(f"Itinerary Type: {itinerary_type}")
         # Call the function to fetch and process data using the input values
         flights_df=fetch_and_process_data(source_airport_code, destination_airport_code, out_date, class_of_service, sort_order, itinerary_type)
 
