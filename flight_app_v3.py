@@ -223,7 +223,7 @@ def display_flight_details(flights_df, sort_order):
         grouped = grouped.sort_values(by='ARRIVAL_TIME')
     
     for _, summary in grouped.iterrows():
-        with st.expander(f"{summary['AIRLINE']} - {summary['FL_DATE']} | Total Duration: {int(summary['AIR_TIME'])} min | Total Price: ${summary['TOTAL_PRICE']:.2f} | Total Delay: {-int(summary['Expected_Delay'])} min | Legs: {summary['NUM_LEGS']} (Click to expand)"):
+        with st.expander(f"{summary['AIRLINE']} - {summary['FL_DATE']} | Total Duration: {int(summary['AIR_TIME'])} min | Total Price: ${summary['TOTAL_PRICE']:.2f} | Est. Delay: {-int(summary['Expected_Delay'])} min | Legs: {summary['NUM_LEGS']} (Click to expand)"):
             st.image(summary['LOGO_URL'], width=100)  # Adjust width as needed
             itinerary_details = flights_df[flights_df['ITINERARY_ID'] == summary['ITINERARY_ID']]
             for _, flight in itinerary_details.iterrows():
