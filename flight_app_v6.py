@@ -27,7 +27,7 @@ def fetch_and_process_data(source_airport, destination_airport, out_date, class_
     api_key = "04add5b7cdmshd4b470181d45798p1428bbjsn3f4be7e144f4"
     api_host = "tripadvisor16.p.rapidapi.com"
     url = "https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights"
-    
+
     flights_data = []
     page_limit = 10  # Set the page limit to 10
 
@@ -229,7 +229,7 @@ def display_flight_details(flights_df, sort_order):
     elif sort_order == 'ARRIVAL_TIME':
         # Ensure you calculate or store arrival time if needed for this sort
         grouped = grouped.sort_values(by='ARRIVAL_TIME')
-    
+
     for _, summary in grouped.iterrows():
         if int(summary['Expected_Delay']) > 0:
             with st.expander(f"{summary['AIRLINE']} - {summary['FL_DATE']} | Total Duration: {int(summary['AIR_TIME']//60)}h {int(summary['AIR_TIME']%60)}min | Total Price: ${summary['TOTAL_PRICE']:.2f} | Est. Delay: {int(summary['Expected_Delay'])} min | Legs: {summary['NUM_LEGS']} (Click to expand)"):
@@ -255,7 +255,7 @@ def display_flight_details(flights_df, sort_order):
                     st.text(f"Ahead of Schedule by: {-round(flight['Expected_Delay'],2)} min")
                     st.markdown("---")
                 st.markdown(f"<a href='{summary['URL']}' target='_blank' class='btn'>Book Now</a>", unsafe_allow_html=True)           
-            
+
 # Function to display flights cost-delay scatter plot
 def display_flight_details_scatter(flights):
     # Set up the table headers
@@ -280,7 +280,7 @@ def display_flight_details_scatter(flights):
     }).reset_index()
 
     grouped['Estimated Delay'] = (grouped['Expected_Delay'].round())
-    
+
     y_range_max_1 = grouped['Estimated Delay'].max()
     y_range_min_1 = grouped['Estimated Delay'].min()
 
@@ -288,19 +288,19 @@ def display_flight_details_scatter(flights):
     x_range_min_1 = grouped['TOTAL_PRICE'].min()
 
 
-    
+
     c = (
        alt.Chart(grouped)
        .mark_circle(size=200)
        .encode(x=alt.X("TOTAL_PRICE:Q", title='Total Price [USD]', scale=alt.Scale(domain=(0.8*x_range_min_1,1.2*x_range_max_1))), y=alt.Y('Estimated Delay', title='Estimated Delay [mins]', scale=alt.Scale(domain=(y_range_min_1-5,y_range_max_1+5))), color=alt.Color("AIRLINE").scale(scheme="category10") , href='URL', tooltip=["TOTAL_PRICE", "Estimated Delay"])
     )
-    
+
     c['usermeta'] = {
     "embedOptions": {
         'loader': {'target': '_blank'}
         }
     }
-    
+
     st.markdown("### Expected Flight Delay Vs Cost")
     st.markdown("*Negative numbers mean that our model predicts to arrive ahead of schedule*")
     st.markdown("\n")
@@ -316,11 +316,6 @@ def display_flight_details_scatter(flights):
 
 # Create the Streamlit app interface
 def main():
-
-    st.title("Welcome to Super Fly")
-    st.write("Your ultimate wingman in travel, predicting flight delays with precision and offering optimized alternatives at the best prices, ensuring you always soar smoothly towards your destination.")
-
-
     # # Place input widgets in the sidebar
     tomorrow = datetime.today().date() + timedelta(days=1)
     today = datetime.today().date() + timedelta(days=0)
@@ -366,7 +361,7 @@ def main():
             format_func=lambda x: f"{x} - {top_us_airports[x]}",
             index=list(top_us_airports.keys()).index('ATL')
         )
-        
+
         destination_airport_code = st.selectbox(
             "Select Destination Airport Code",
             options=list(top_us_airports.keys()),
