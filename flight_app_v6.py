@@ -316,6 +316,12 @@ def display_flight_details_scatter(flights):
 
 # Create the Streamlit app interface
 def main():
+
+    st.title("Super Fly")
+    st.write("Your ultimate wingman in travel, predicting flight delays with precision and offering optimized alternatives at the best prices, ensuring you always soar smoothly towards your destination.")
+
+
+
     # # Place input widgets in the sidebar
     tomorrow = datetime.today().date() + timedelta(days=1)
     today = datetime.today().date() + timedelta(days=0)
