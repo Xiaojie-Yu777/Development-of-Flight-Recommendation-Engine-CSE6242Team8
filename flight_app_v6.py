@@ -318,7 +318,7 @@ def display_flight_details_scatter(flights):
 def main():
 
     st.title("Welcome to Super Fly")
-    st.write("Super Fly: Your ultimate wingman in travel, predicting flight delays with precision and offering optimized alternatives at the best prices, ensuring you always soar smoothly towards your destination.")
+    st.write("Your ultimate wingman in travel, predicting flight delays with precision and offering optimized alternatives at the best prices, ensuring you always soar smoothly towards your destination.")
 
 
     # # Place input widgets in the sidebar
