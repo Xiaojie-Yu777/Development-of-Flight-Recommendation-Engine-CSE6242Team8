@@ -380,7 +380,7 @@ def main():
                                   max_value=datetime.today().date() + timedelta(days=365), help="You can only select a date starting from tomorrow onwards.")
         class_of_service = st.selectbox(
             "Class of Service",
-            ("ECONOMY"),
+            ("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"),
             format_func=lambda x: x.replace("_", " ").title()  # Format the display text
         )
         sort_order = st.selectbox(
