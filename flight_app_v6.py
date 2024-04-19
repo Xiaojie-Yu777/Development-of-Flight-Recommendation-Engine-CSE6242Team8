@@ -317,7 +317,9 @@ def display_flight_details_scatter(flights):
 # Create the Streamlit app interface
 def main():
 
-    st.title("Super Fly")
+    st.title("Welcome to Super Fly")
+    st.write(""Super Fly: Your ultimate wingman in travel, predicting flight delays with precision and offering optimized alternatives at the best prices, ensuring you always soar smoothly towards your destination.")
+
 
     # # Place input widgets in the sidebar
     tomorrow = datetime.today().date() + timedelta(days=1)
@@ -378,7 +380,7 @@ def main():
                                   max_value=datetime.today().date() + timedelta(days=365), help="You can only select a date starting from tomorrow onwards.")
         class_of_service = st.selectbox(
             "Class of Service",
-            ("ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"),
+            ("ECONOMY"),
             format_func=lambda x: x.replace("_", " ").title()  # Format the display text
         )
         sort_order = st.selectbox(
